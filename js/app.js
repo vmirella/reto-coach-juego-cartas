@@ -21,8 +21,9 @@ Ejemplo de carta: 4D - 4T - 13E - 5C
   }
   return stickCard;  
 }
- //Devuelve un arreglo con 4 cartas no repetidas
- const generateCards = () => {
+
+//Devuelve un arreglo con 4 cartas no repetidas
+const generateCards = () => {
   const arrayFourCards = [];
   
   for (let i = 0; i < 4; i++){
@@ -32,6 +33,8 @@ Ejemplo de carta: 4D - 4T - 13E - 5C
       let stickCard = generateStickCard();
       let valueCard = numCard + stickCard;
       if(arrayFourCards.indexOf(valueCard) === -1) {
+        //pusheamos 2 veces la misma carta para tener su pareja
+        arrayFourCards.push(valueCard);
         arrayFourCards.push(valueCard);
         flag = 0;
       }
@@ -41,7 +44,12 @@ Ejemplo de carta: 4D - 4T - 13E - 5C
     }
     while (flag === 1);
   }
+  //Ordenando aleatoriamente el array
+  for(let i = 0; i < 20; i++) {
+    arrayFourCards.sort(() => Math.random() - 0.5);
+  } 
+
   return arrayFourCards;
 }
 
- generateCards();
+console.log(generateCards());
