@@ -52,4 +52,92 @@ const generateCards = () => {
   return arrayFourCards;
 }
 
-console.log(generateCards());
+const generateImages = () => {
+  const cards = generateCards();
+  const arrayCards = [];
+
+  for(let i = 0; i < cards.length; i++) {
+    let card = {
+      id: i,
+      image: 'img/' + cards[i] + '.jpg',
+      rotate: false,
+      hidden: false
+    };
+
+    arrayCards.push(card);
+  }
+
+  return arrayCards;
+}
+
+
+let table = new Vue({
+  el: '#table',
+  data: {
+    title: 'Vamos a jugar!',
+    cards: generateImages(),
+    count: 0,
+    lastId: '',
+    finishGame: false,
+    resetGame: false
+  },
+  methods: {
+    reset: function() {
+      this.resetGame = true;
+      this.title = 'Vamos a jugar!';
+      this.cards = generateImages();
+      this.count = 0;
+      this.lastId = '';
+      this.finishGame = false; 
+      
+      //resetGame oculta el tablero por un segundo para evitar que se vean las nuevas cartas generadas
+      let vm = this;
+      setTimeout(function(){
+        vm.resetGame = false;
+      }, 1000);
+    },
+    rotateCard: function(id) {
+      if (this.cards[id].rotate === true) {
+        return;
+      }      
+
+      if (this.count < 2) { 
+        this.count++;
+        this.cards[id].rotate = true;
+        if (this.count === 1) {
+          this.lastId =  id;
+        }
+        else if (this.count === 2) {
+          //vm = vue model
+          let vm = this;
+          setTimeout(function(){
+            if (vm.cards[id].image === vm.cards[vm.lastId].image) {
+              vm.cards[id].hidden = true;
+              vm.cards[vm.lastId].hidden = true;
+              console.log('iguales');
+              //Verificando si todas las cartas estan ocultas
+              vm.finishGame = true;
+              for (let i= 0; i < vm.cards.length; i++) {
+                if (vm.cards[i].hidden  === false) {
+                  vm.finishGame = false;
+                }
+              }
+
+              if (vm.finishGame === true) {
+                vm.title = 'El juego ha terminado';
+              }
+            }
+            else {
+              vm.cards[id].rotate = false;
+              vm.cards[vm.lastId].rotate = false;
+              console.log('diferentes');
+            }
+  
+            vm.count = 0;
+          }, 1200);
+          
+        }
+      }
+    }
+  }
+})
