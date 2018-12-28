@@ -12,15 +12,13 @@
 <body>
   <div class="container" id="table">
     <div class="row">
-      <div class="col-sm-12">
-        <h1>{{title}}</h1>
-        <button class="btn-primary" v-on:click="reset">Reiniciar</button>
-        <button class="btn-info">Info</button>
+      <div class="col-sm-12 text-center mt-4">
+        <h1>{{title}}</h1>        
       </div>
     </div>
-    <div class="row" v-bind:class="{hidden: resetGame}">
+    <div class="row container-color" v-bind:class="{hidden: resetGame}">
 
-      <div class="col-sm-3" v-for="card in cards">
+      <div class="col-sm-3 card-container mt-4" v-for="card in cards">
         <div class="flip-card" v-on:click="rotateCard(card.id)" v-bind:class="{hidden: card.hidden}">
           <div class="flip-card-inner" v-bind:class="{rotate: card.rotate}">
             <div class="flip-card-front">
@@ -31,8 +29,12 @@
             </div>
           </div>
         </div>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center mt-4 mb-4">
+        <button class="btn-primary btn-lg" v-on:click="reset">Reiniciar</button>
       </div>
-
     </div>
   </div>
 

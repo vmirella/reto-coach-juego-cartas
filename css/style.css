@@ -1,7 +1,17 @@
-.flip-card {
+.container {
+  max-width: 950px;
+  background-color: #c39863;
+}
+
+.container-color {
+  background-color: #116611;
+}
+
+.flip-card {  
   width: 99px;
   height: 138px;
   perspective: 1000px;
+  margin: 0 auto;
 }
 
 .flip-card-inner {
@@ -36,4 +46,14 @@
 
 .hidden {
   visibility: hidden;
+}
+
+h1 {
+  color: #003333;
+  font-size: 36px;
+  margin-bottom: 25px;
+}
+
+.card-container {
+  margin-bottom: 15px;
 }
