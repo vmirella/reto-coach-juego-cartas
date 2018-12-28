@@ -14,5 +14,6 @@ Ganas si encuentras todas las parejas de cartas. Si te quedas sin puntos pierdes
 
 Hay un botón que te permite reiniciar el juego.
 
+![alt text](img/captura.jpg)
 
 
