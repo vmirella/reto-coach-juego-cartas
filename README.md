@@ -1,6 +1,7 @@
 # Juego de cartas
 
-<dt>Instrucciones:</dt>
+## Instrucciones:
+
 Para poder jugar este juego deberás desplegar el siguiente link.
 
 [Link del juego](https://vmirella.github.io/reto-coach-juego-cartas/)
