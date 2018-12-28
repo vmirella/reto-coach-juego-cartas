@@ -18,7 +18,7 @@
     </div>
     <div class="row container-color" v-bind:class="{hidden: resetGame}">
 
-      <div class="col-sm-3 card-container mt-4" v-for="card in cards">
+      <div class="col-6 col-sm-3 card-container mt-4" v-for="card in cards">
         <div class="flip-card" v-on:click="rotateCard(card.id)" v-bind:class="{hidden: card.hidden}">
           <div class="flip-card-inner" v-bind:class="{rotate: card.rotate}">
             <div class="flip-card-front">
