@@ -79,7 +79,8 @@ let table = new Vue({
     count: 0,
     lastId: '',
     finishGame: false,
-    resetGame: false
+    resetGame: false,
+    points: 50
   },
   methods: {
     reset: function() {
@@ -89,6 +90,7 @@ let table = new Vue({
       this.count = 0;
       this.lastId = '';
       this.finishGame = false; 
+      this.points = 50;
       
       //resetGame oculta el tablero por un segundo para evitar que se vean las nuevas cartas generadas
       let vm = this;
@@ -97,10 +99,10 @@ let table = new Vue({
       }, 1000);
     },
     rotateCard: function(id) {
-      if (this.cards[id].rotate === true) {
+      if (this.cards[id].rotate === true || this.points <= 0) {
         return;
       }      
-
+      
       if (this.count < 2) { 
         this.count++;
         this.cards[id].rotate = true;
@@ -115,6 +117,8 @@ let table = new Vue({
               vm.cards[id].hidden = true;
               vm.cards[vm.lastId].hidden = true;
               console.log('iguales');
+              //Añadir 20 puntos
+              vm.points += 20;
               //Verificando si todas las cartas estan ocultas
               vm.finishGame = true;
               for (let i= 0; i < vm.cards.length; i++) {
@@ -124,13 +128,18 @@ let table = new Vue({
               }
 
               if (vm.finishGame === true) {
-                vm.title = 'El juego ha terminado';
+                vm.title = 'Ganaste';
               }
             }
             else {
               vm.cards[id].rotate = false;
               vm.cards[vm.lastId].rotate = false;
               console.log('diferentes');
+              //Reducir 10 puntos 
+              vm.points -= 10;
+              if (vm.points <= 0) {
+                vm.title = 'Te quedaste sin puntos';
+              }
             }
   
             vm.count = 0;
