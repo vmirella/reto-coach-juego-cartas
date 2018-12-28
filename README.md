@@ -2,6 +2,7 @@
 
 <dt>Instrucciones:</dt>
 Para poder jugar este juego deberás desplegar el siguiente link.
+
 [Link del juego](https://vmirella.github.io/reto-coach-juego-cartas/)
 
 El juego es para reforzar la memoria podrás observar 8 cartas y deberás buscar parejas de cartas.
